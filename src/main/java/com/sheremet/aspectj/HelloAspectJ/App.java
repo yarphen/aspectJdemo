@@ -9,8 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Hello world!
  *
  */
-public class App 
-{
+public class App {
 	public static void main( String[] args ){
 		ApplicationContext context = new ClassPathXmlApplicationContext("SpringBeans.xml");
 		String [] positive =	{"Hello!","How are you!","Nice to meet you too!","I'm very glad to see you!"};
@@ -25,6 +24,7 @@ public class App
 				try {
 					talker1.talk(talker2.getName());
 				} catch (Exception e) {
+					//here will be printing user-generated exception
 					e.printStackTrace();
 				}
 			}
@@ -35,6 +35,7 @@ public class App
 				try {
 					talker2.talk(talker1.getName());
 				} catch (Exception e) {
+					//here will be printing user-generated exception
 					e.printStackTrace();
 				}
 			}

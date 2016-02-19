@@ -9,6 +9,8 @@ public class Sniffer implements InfoStealer{
 	public Sniffer() {
 		stealedData = new HashMap<String, LinkedList<Message>>();
 		System.out.println("Sniffer created!");
+		System.out.println("We wish you funny reading:)");
+		System.out.println();
 	}
 	public synchronized void stealInfo(String address, Message info) {
 		if (!stealedData.containsKey(address)){

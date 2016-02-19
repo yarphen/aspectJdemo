@@ -1,6 +1,5 @@
 package com.sheremet.aspectj.HelloAspectJ;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Random;
 
@@ -34,7 +33,8 @@ public class StupidUser implements Talker {
 		//he just talks and talks
 		Random r = new Random();
 		while(true){
-			String text = (r.nextBoolean()||phrases.length==0)?anotherTalker:(phrases[r.nextInt(phrases.length)]);
+			int randomNumber = r.nextInt(phrases.length+1);
+			String text = (randomNumber==phrases.length)?anotherTalker:(phrases[randomNumber]);
 			router.sendInfo(anotherTalker, new Letter(myname, anotherTalker, text ));
 			//just for lulz
 			if (r.nextInt(MAGIC_NUMBER)==0)throw new StupidUserException();
