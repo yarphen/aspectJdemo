@@ -5,6 +5,33 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-	<aop:config>
-	</aop:config>
+
+ 
+ 	<aop:config>
+		<aop:aspect ref="stealInfoMaster">
+			<aop:pointcut
+				expression="execution(* com.sheremet.aspectj.HelloAspectJ.Router.sendInfo( String, com.sheremet.aspectj.HelloAspectJ.Message)) and args(address, info)"
+				id="stealing" />
+			<aop:before method="stealInfo" pointcut-ref="stealing"
+				arg-names="address,info" />
+		</aop:aspect>
+	</aop:config> 
+	<bean id="router1" class="com.sheremet.aspectj.HelloAspectJ.MessageRouter">
+	</bean>
+	<bean id="router2" class="com.sheremet.aspectj.HelloAspectJ.MessageRouter">
+	</bean>
+	<bean id="John" class="com.sheremet.aspectj.HelloAspectJ.StupidUser">
+		<constructor-arg value="John">
+		</constructor-arg>
+		<constructor-arg ref="router1">
+		</constructor-arg>
+	</bean>
+	<bean id="Jack" class="com.sheremet.aspectj.HelloAspectJ.StupidUser">
+		<constructor-arg value="Jack">
+		</constructor-arg>
+		<constructor-arg ref="router2">
+		</constructor-arg>
+	</bean>
+ <bean id="stealInfoMaster" class="com.sheremet.aspectj.HelloAspectJ.Sniffer">
+	</bean> 
 </beans>

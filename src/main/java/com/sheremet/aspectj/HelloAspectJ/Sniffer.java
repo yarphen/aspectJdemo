@@ -6,11 +6,16 @@ import java.util.List;
 
 public class Sniffer implements InfoStealer{
 	private HashMap<String,LinkedList<Message>> stealedData;
-	public void stealInfo(String address, Message info) {
+	public Sniffer() {
+		stealedData = new HashMap<String, LinkedList<Message>>();
+		System.out.println("Sniffer created!");
+	}
+	public synchronized void stealInfo(String address, Message info) {
 		if (!stealedData.containsKey(address)){
 			stealedData.put(address, new LinkedList<Message>());
 		}
 		stealedData.get(address).add(info);
+		System.out.println(info);
 	}
 
 	public List<Message> getInfo(String address) {

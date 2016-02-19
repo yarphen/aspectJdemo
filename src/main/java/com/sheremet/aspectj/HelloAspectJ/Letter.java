@@ -21,4 +21,9 @@ public class Letter implements Message {
 		return text;
 	}
 
+	@Override
+	public String toString() {
+		return sender + ":" + text;
+	}
+
 }
